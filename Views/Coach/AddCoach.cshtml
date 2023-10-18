@@ -1,0 +1,75 @@
+﻿@model BasketballAcademy.Models.Coach
+
+@{
+
+    Layout = "~/Views/Shared/AdminLayoutPage.cshtml";
+}
+<link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+<script src="~/Scripts/Validation.js"></script>
+<link href="~/Content/AddCoach.css" rel="stylesheet" />
+<script src="~/Scripts/PreventBack.js"></script>
+@using (Html.BeginForm("AddCoach", "Coach", FormMethod.Post, new { @onsubmit = "return validateAddCoach();" }))
+{
+    @Html.AntiForgeryToken()
+<div id="Event">
+    <div class="form-horizontal col-md-12 my-3" id="EventForm">
+        <h4 class="text-center" id="head">Coach registration</h4>
+
+        <h4 class="text-success fw-bold">@ViewBag.Message</h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="FullName" class="control-label ">Name</label>
+            <div class="col-md-10">
+                <input type="text" id="name" name="FullName" class="form-control" onfocusout="validatename()" placeholder="Enter your  name" />
+                <span id="nameError"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="control-label ">Username</label>
+            <div class="col-md-10">
+                <input type="text" id="username" name="username" class="form-control" onfocusout="validateusername()" placeholder="Enter  username" />
+                <span id="usernameError"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Email" class="control-label ">Email</label>
+            <div class="col-md-10">
+                <input type="email" id="email" name="Email" class="form-control" onfocusout="validateEmail()" placeholder="Enter your email " />
+                <span id="emailError"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Password" class="control-label ">Password</label>
+            <div class="col-md-10">
+                <input type="password" id="password" name="Password" class="form-control" onfocusout="validatePassword()" placeholder="Enter a password" />
+                <span id="passwordError"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Password" class="control-label ">Confirm password</label>
+            <div class="col-md-10">
+                <input type="password" id="confirmPassword" name="Password" class="form-control" onfocusout="validateConfirmpassword()" placeholder="Confirm your password" />
+                <span id="confirmPasswordError"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class=" my-3">
+                <input type="submit" value="Add coach" class="btn btn-success" />
+                <a href="@Url.Action("ViewCoach")" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

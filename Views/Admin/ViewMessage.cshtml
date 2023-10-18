@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BasketballAcademy.Models.Contact>
+
+@{
+    ViewBag.Title = "ViewMessage";
+    Layout = "~/Views/Shared/AdminLayoutPage.cshtml";
+}
+<script src="~/Scripts/PreventBack.js"></script>
+<h2 class="text-center">Message</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <strong>Name  </strong>@item.Name
+                    <p class="card-text">
+                        <strong>Phone  </strong> @item.Phone<br />
+                        <strong>Email  </strong> @item.Email<br />
+                        <strong>Message  </strong><br>
+                        @item.Message
+                    </p>
+                    @Html.ActionLink("Delete", "DeleteMessage", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

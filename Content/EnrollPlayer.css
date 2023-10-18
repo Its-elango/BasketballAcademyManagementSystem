@@ -1,0 +1,25 @@
+﻿
+/* Styles for elements with the IDs 'paymentError' and 'genderError' */
+#paymentError, #genderError {
+    color: red;
+    font-size: small;
+}
+
+
+/* Styles for the 'body' element */
+body {
+    background-image: url('../../content/image/enroll back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Styles for an element with the ID 'EnrollForm' */
+#EnrollForm {
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgb(178, 0, 255);
+}

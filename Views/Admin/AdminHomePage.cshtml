@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "AdminHomePage";
+    Layout = "~/Views/Shared/AdminLayoutPage.cshtml";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/PreventBack.js"></script>
+<style>
+
+
+    /* Header styling */
+
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    #session {
+        color: purple;
+    }
+
+
+    /* Footer styling */
+
+</style>
+
+
+<header class="text-center " id="session">
+    @if (Session["fullName"] != null)
+    {
+        <h3 class="display-4">Welcome, @Session["fullName"]....!</h3>
+    }
+</header>
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <img src="~/Content/image/basketball-team-new.jpeg" class="img-fluid" />
+    </div>
+    <div class="col-md-6 col-sm-12" id="paragraph">
+        <h4 class="display-6">Admin</h4>
+        The right office administrator can help everyone else reach their full potential by maintaining clear communication, managing visitors and vendors, handling correspondence, and generally ensuring a harmonious workplace.
+        If you’re looking to hire someone for this critical role, a well-written office admin job description is key.
+        This office administrator job description template can help you create a posting that will attract the best qualified candidates and turn them into applicants.
+        You can also browse our office administrator job listings for more ideas on how to fill out your description.
+        This office administrator job description template can help you create a posting that will attract the best qualified candidates and turn them into applicants.
+        You can also browse our office administrator job listings for more ideas on how to fill out your description.
+    </div>
+</div>
+
+
+

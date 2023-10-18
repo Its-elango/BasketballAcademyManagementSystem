@@ -1,0 +1,24 @@
+﻿/* Styles for list items within the 'nav' element and anchor elements */
+nav ul li, nav a {
+    margin-right: 10px;
+    text-align: left;
+}
+    /* Styles for the last list item within the 'nav' element */
+    nav ul li:last-child {
+        margin-right: 50px;
+    }
+
+/* Styles for navigation links with the class 'nav-link' */
+.nav-link {
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+
+    font-weight: bold;
+    transition: color 0.3s;
+}
+    /* Styles for navigation links with the class 'nav-link' when hovered */
+    .nav-link:hover {
+        color: orangered;
+        border-color: orangered;
+    }

@@ -1,0 +1,28 @@
+﻿
+/* Styles for an element with the ID 'navbarSupportedContent' */
+#navbarSupportedContent {
+    justify-content: end;
+}
+
+/* Styles for list items and anchor elements within 'nav' */
+nav ul li, nav a {
+    margin-right: 10px;
+    text-align: left;
+}
+
+/* Styles for elements with the class 'nav-link' */
+.nav-link {
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* Styles for the last list item within 'nav' */
+    nav ul li:last-child {
+        margin-right: 50px;
+    }
+
+

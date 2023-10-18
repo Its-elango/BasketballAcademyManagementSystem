@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BasketballAcademy.Models.Events>
+@{
+    ViewBag.Title = "CoachHomePage";
+    Layout = "~/Views/Shared/CoachLayoutPage.cshtml";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<script src="~/Scripts/PreventBack.js"></script>
+<style>
+    /* Reset some default styles for consistency */
+    body, h1, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    #session {
+        color: purple;
+    }
+    #frame{
+        height:1000px;
+        width:100%;
+    }
+</style>
+
+
+<div class="my-3 ">
+
+    <header class="text-center" id="session">
+        @if (Session["fullName"] != null)
+        {
+            <h3>Welcome, @Session["fullName"].....</h3>
+        }
+
+
+    </header>
+    <marquee scrollamount="8" behavior="alternate">
+        <div class="text-danger fw-bold fs-3">
+            Complete your profile to become eligible as a coach.
+        </div>
+    </marquee>
+    <div class="row mx-1">
+        <div class="col-md-6 col-sm-12">
+            <img src="~/Content/image/coachdiscussion.jpg" class="img-fluid" />
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div id="paragraph">
+                Coaching basketball is about strategizing and directing the movements and actions of a basketball team or individual player.
+                Coaches strategize and scout opposing teams and find ways to defeat them as easily as possible. A successful basketball coach needs to now the understanding of how to play the game.
+                A basketball coach must be able to manage the duties of the job by recruiting the top players, get them in shape, make a team,
+                motivate players and teach them how to play the game of basketball. Coaching is usually done by a single person, with the help of one or more assistants.
+            </div>
+            <div class="my-4" id="paragraph">
+                A coach is the face of the team, helping it achieve the public relations goals of the organization and build a positive image that will improve recruiting. (Edmunds).
+                A coach is responsibiable for setting up and an environment so that the team can use its skills and abilities to their full potential.
+                Therefor a coach has to make a game plan for each game, so that his team will be ready for the next opponent.
+                A coach has to know his team and the opponent abilities to be able to match his team up with the opponent.
+            </div>
+        </div>
+
+    </div>
+    <h2 class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="head">Ongoing events</h2>
+
+
+    <div class="col-md-12 img-fluid">
+        <iframe src="/Event/HomeEvent" id="frame"></iframe>
+    </div>
+
+
+
+
+</div>

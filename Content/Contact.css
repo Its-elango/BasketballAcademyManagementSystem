@@ -1,0 +1,39 @@
+﻿/* Styles for an element with the ID 'map' */
+#map {
+    float: right;
+}
+
+/* Styles for an element with the class 'mapouter' */
+.mapouter {
+    width: 80%;
+    height: 480px;
+}
+
+/* Styles for an element with the class 'gmap_canvas' */
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 480px;
+}
+
+/* Styles for an element with the class 'gmap_iframe' */
+.gmap_iframe {
+    height: 400px !important;
+    width: 100%;
+}
+
+/* Styles for an element with the ID 'address' */
+#address {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    line-height: 2;
+    flex-direction: column;
+}
+
+/* Styles for an element with the ID 'id' */
+#id {
+    text-align: left;
+}
+

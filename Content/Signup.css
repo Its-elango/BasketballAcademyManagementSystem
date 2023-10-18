@@ -1,0 +1,8 @@
+﻿
+/* Styles for the 'body' element */
+body {
+    background-image: url('../../content/image/home.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+

@@ -1,0 +1,37 @@
+﻿/* Styles for an unordered list within the 'nav' element */
+nav ul {
+    list-style: none;
+    display: flex;
+    text-align: left;
+}
+
+
+/* Styles for an element with the ID 'navbarSupportedContent' */
+#navbarSupportedContent {
+    justify-content: end;
+}
+
+/* Styles for list items within the 'nav' element and anchor elements */
+nav ul li, nav a {
+    text-align: left;
+}
+
+    /* Styles for the last list item within the 'nav' element */
+    nav ul li:last-child {
+        margin-right: 10px;
+    }
+
+/* Styles for navigation links with the class 'nav-link' */
+.nav-link {
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+    /* Styles for navigation links with the class 'nav-link' when hovered */
+    .nav-link:hover {
+        color: orangered;
+    }

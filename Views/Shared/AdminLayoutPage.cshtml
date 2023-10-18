@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Academy</title>
+    <link rel="icon" href="~/Content/favicon_io (2)/android-chrome-512x512.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ce19876732.js" crossorigin="anonymous"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #navbar {
+            background-color: purple;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        footer {
+            background-color: purple;
+            margin-top:100px;
+            color:white;
+        }
+    </style>
+
+<link href="~/Content/AdminLayoutStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md" id="navbar">
+        <a class="navbar-brand">
+            <img src="~/Content/image/logo.png" alt="Logo" height="80" width="80" />
+        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li>@Html.ActionLink("Home", "AdminHomePage", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Events manage", "ViewEvents", "Event", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Coach manage", "ViewCoach", "Coach", new { id = Session["Id"] }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Admission manage", "ViewPlayer", "Admission", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Player manage", "ViewEnrolledPlayer", "Admission", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("User manage", "ViewAll", "User", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Admin manage", "ViewAdmin", "Admin", new { id = Session["Id"] }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Message", "ViewMessage", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Sign out", "SignOut", "Credential", new { area = "" }, new { @class = " btn btn-outline-danger mx-2" })</li>
+                </ul>
+            </div>
+    </nav>
+    <div class=" body">
+        @RenderBody()
+
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year -BasketBall Academy </p>
+            <div class="my-3">
+                <!-- Social media icons with links -->
+                <a href="https://facebook.com/nba">	<i class='fab fa-facebook mx-3' style='font-size:20px;color:white;' id="icon"></i></a>
+                <a href="https://twitter.com/NBA">	<i class='fab fa-twitter mx-3' style='font-size: 20px; color: white' id="icon"></i></a>
+                <a href="https://instagram.com/nba/?hl=en">	<i class='fab fa-instagram mx-3' style='font-size: 20px; color: white' id="icon"></i></a>
+                <a href="https://youtube.com/user/NBA">	<i class='fab fa-youtube mx-3' style='font-size: 20px; color: white' id="icon"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

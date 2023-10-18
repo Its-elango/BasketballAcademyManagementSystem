@@ -1,0 +1,66 @@
+﻿@model BasketballAcademy.Models.Admin
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayoutPage.cshtml";
+}
+<script src="~/Scripts/PreventBack.js"></script>
+<script src="~/Scripts/Validation.js"></script>
+<link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+<link href="~/Content/Admin.css" rel="stylesheet" />
+
+<h2 class="text-center my-3" id="head">Admin registeration</h2>
+@using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { @onsubmit = "return validateAddAdmin();" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="Event">
+        <div class="form-horizontal mx-5" id="EventForm">
+            <div class="text-danger">
+                <!-- Validation Summary -->
+            </div>
+            <div class="form-group">
+                <label for="fullName" class="control-label "> Name</label>
+                <div class="col-md-10">
+                    <input type="text" id="name" name="fullName" class="form-control" placeholder="Enter full name" onfocusout="validatename()" />
+                    <span id="nameError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label ">Email</label>
+                <div class="col-md-10">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email address" onfocusout="validateEmail()" />
+                    <span id="emailError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username" class="control-label ">Username</label>
+                <div class="col-md-10">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" onfocusout="validateusername()" />
+                    <span id="usernameError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label ">Password</label>
+                <div class="col-md-10">
+                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter  password" onfocusout="validatePassword()" />
+                    <span id="passwordError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" class="control-label ">Confirm Password:</label>
+                <div class="col-md-10">
+                    <input type="text" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm your password" onfocusout="validateConfirmpassword()" />
+                    <span id="confirmPasswordError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <input type="submit" value="Register" class="btn btn-outline-success my-3" />
+                    <a href="@Url.Action("ViewAdmin")" class="btn btn-outline-primary">Back to List</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

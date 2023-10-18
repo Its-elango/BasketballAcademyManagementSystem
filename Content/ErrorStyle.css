@@ -1,0 +1,24 @@
+﻿#nameError,
+#emailError,
+#usernameError,
+#passwordError,
+#confirmPasswordError,
+#DateError,
+#DropdownError,
+#TimeError,
+#VenueError,
+#detailsError,
+#ageError,
+#prizeError,
+#phoneError,
+#messageError,
+#addressError,
+#experienceError,
+#skillError,
+#pgphoneError,
+#pgnameError,
+#genderError,
+#monthError {
+    color: red;
+    font-size: small;
+}

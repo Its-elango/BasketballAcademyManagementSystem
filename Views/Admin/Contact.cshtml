@@ -1,0 +1,91 @@
+﻿@model BasketballAcademy.Models.Contact
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/HomePageLayout.cshtml";
+}
+<script src="~/Scripts/PreventBack.js"></script>
+<script src="https://kit.fontawesome.com/ce19876732.js" crossorigin="anonymous"></script>
+<script src="~/Scripts/Validation.js"></script>
+<link href="~/Content/Contact.css" rel="stylesheet" />
+<link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+
+<h2 class="text-center my-3" id="head">Contact us</h2>
+
+@using (Html.BeginForm("Contact", "Admin", FormMethod.Post, new { @onsubmit = "return validateContact();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-md-4 col-sm-12 border" id="address">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h5 class="fw-bold" id="head"> Put your message...</h5>
+            <div class="form-group">
+                <label for="Name" class="control-label col-md-2">Name</label>
+                <div class="col-md-10">
+                    <input type="text" id="name" name="Name" class="form-control" placeholder="Enter your name" onfocusout=" validatename()">
+                    <span id="nameError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label col-md-2">Phone</label>
+                <div class="col-md-10">
+                    <input type="text" id="phone" name="Phone" class="form-control" placeholder="Enter your phone" onfocusout=" validatePhone()">
+                    <span id="phoneError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input type="text" id="email" name="Email" class="form-control" placeholder="Enter your email" onfocusout=" validateEmail()">
+                    <span id="emailError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Message" class="control-label col-md-2">Message</label>
+                <div class="col-md-10">
+                    <textarea id="details" name="Message" class="form-control" placeholder="Enter your message" onfocusout=" validatedetails()"></textarea>
+                    <span id="detailsError"></span>
+                </div>
+            </div>
+            <div class="form-group my-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Send message" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 p-3" id="address">
+            <div class="Address">
+                <h5 class="fw-bold" id="head"> Address</h5>
+                <div>
+                    <i class="fa-solid fa-location-dot"></i> Address:
+                    Basketball academy north,
+                    23,North east road,
+                    Tamilnadu,India.
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone"></i>  Contact:
+                    3456789878
+                </div>
+                <div>
+                    <i class="fa-regular fa-envelope"></i> Email:
+                    admin@basketballacademygmail.com
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12" id="map">
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe class="gmap_iframe" width="100" frameborder="0" scrolling="no" src="https://maps.google.com/maps?width=644&amp;height=480&amp;hl=en&amp;q=Housten&amp;t=k&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                    <h5 class="fw-bold text-center" id="head"> Geographical location</h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

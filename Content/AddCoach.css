@@ -1,0 +1,32 @@
+﻿/* Styles for the 'head' element */
+#head {
+    color: purple; 
+
+/* Styles for the 'body' element */
+body {
+    background-image: url('../../content/image/coachbg.jpg');
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    backdrop-filter: blur(10px); 
+    color: white; 
+}
+
+/* Styles for an element with the ID 'EventForm' */
+#EventForm {
+    justify-content: center; 
+    align-items: center; 
+    display: flex; 
+    width: 400px; 
+    border: 2px solid purple;
+    border-radius: 10px;
+    flex-direction: column; 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(128, 0, 128, 0.2); 
+}
+
+/* Styles for an element with the ID 'Event' */
+#Event {
+    justify-content: center; 
+    align-items: center; 
+    display: flex; 
+}

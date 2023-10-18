@@ -1,0 +1,17 @@
+﻿/* Styles for an element with the ID 'EventForm' */
+#EventForm {
+    justify-content: center;
+    border-radius: 10px;
+    margin: 0px 10px 0px 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+/* Styles for the 'body' element */
+body {
+    background-image: url('../../content/image/updateback.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}

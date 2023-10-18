@@ -1,0 +1,94 @@
+﻿@model BasketballAcademy.Models.User
+@{
+    Layout = "~/Views/Shared/HomePageLayout.cshtml";
+}
+<link href="~/Content/Signup.css" rel="stylesheet" />
+<script src="~/Scripts/Validation.js"></script>
+<link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+<script src="~/Scripts/PreventBack.js"></script>
+
+<style>
+    #EventForm {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 400px;
+        border: 2px solid purple;
+        border-radius: 10px;
+        flex-direction: column;
+        backdrop-filter: blur(10px);
+        box-shadow: 16px 0 10px rgba(128, 0, 128, 0.2);
+    }
+
+    #Event {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    </style>
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { @onsubmit = "return validateSignup();" }))
+{ 
+    @Html.AntiForgeryToken()
+
+        <h1 class="text-center my-3" id="head">Sign up</h1>
+
+        <h6 class="text-success fw-bold text-center">@ViewBag.Success</h6>
+        <h6 class="text-danger fw-bold text-center ">@ViewBag.Failure</h6>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div id="Event">
+            <div class="form-horizontal mx-5" id="EventForm">
+                <div class="text-danger">
+                    <!-- Validation Summary -->
+                </div>
+                <div class="form-group">
+                    <label for="fullName" class="control-label mt-3"> Name</label>
+                    <div class="">
+                        <input type="text" id="name" name="fullName" class="form-control" placeholder="Enter full name" onfocusout="validatename()" />
+                        <span id="nameError"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label ">Email</label>
+                    <div class="">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter email address" onfocusout="validateEmail()" />
+                        <span id="emailError"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="control-label ">Username</label>
+                    <div class="">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" onfocusout="validateusername()" />
+                        <span id="usernameError"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="control-label ">Password</label>
+                    <div class="">
+                        <input type="text" id="password" name="password" class="form-control" placeholder="Enter  password" onfocusout="validatePassword()" />
+                        <span id="passwordError"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="control-label ">Confirm Password:</label>
+                    <div class="">
+                        <input type="text" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm your password" onfocusout="validateConfirmpassword()" />
+                        <span id="confirmPasswordError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <input type="submit" value="Register" class="btn btn-outline-primary my-3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        }
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

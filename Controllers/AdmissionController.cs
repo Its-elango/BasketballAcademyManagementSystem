@@ -256,14 +256,15 @@ namespace BasketballAcademy.Controllers
                 List<Admission> players = repository.PlayerList(name);
                 if (players.Count == 0)
                 {
-                    ViewBag.Message = "No players found.";
+                    ViewBag.Message = "No players found";
+                   return View();
                 }
                 else
                 {
                     return View(players);
                 }
 
-               return View();
+              
                
             }
             catch (Exception exception)
@@ -286,13 +287,14 @@ namespace BasketballAcademy.Controllers
                 List<Events> events = repository.GetEventsByPlayer(id);
                 if (events.Count == 0)
                 {
-                    ViewBag.Message = "No events found.";
+                    ViewBag.Message = "No events found..";
+                    return View();
                 }
                 else
                 {
                     return View(events);
                 }
-                return View();
+                             
 
             }
             catch (Exception exception)

@@ -4,16 +4,22 @@
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/UserLayoutPage.cshtml";
 }
+
+<!-- Include PreventBack.js script -->
 <script src="~/Scripts/PreventBack.js"></script>
+
 <style>
     #session {
         color: purple;
     }
-    </style>
+</style>
 
 <div class="display-6 text-center my-3" id="session">
     Our coaches
-    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
 <div class="container">
     <div class="row">
         @foreach (var item in Model)
@@ -24,11 +30,10 @@
                         <div class="col-md-4 text-center">
                             @if (item.photo != null)
                             {
-                                <img src="data:image;base64,@Convert.ToBase64String(item.photo)" height="100" class="card-img" alt="Coach Photo">
-                            }
+                            <img src="data:image;base64,@Convert.ToBase64String(item.photo)" height="100" class="card-img" alt="Coach Photo">                            }
                             else
                             {
-                                <img src="placeholder.jpg" class="card-img" alt="Placeholder Image">
+                            <img src="placeholder.jpg" class="card-img" alt="Placeholder Image">
                             }
                         </div>
                         <div class="col-md-8">
@@ -45,6 +50,10 @@
                 </div>
             </div>
         }
-
     </div>
 </div>
+}
+else
+{
+<p>@ViewBag.Message</p>
+}

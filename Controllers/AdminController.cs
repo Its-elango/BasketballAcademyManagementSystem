@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BasketballAcademy.Controllers
 {
-  
+    [Authorize]
     public class AdminController : Controller
     {
 
@@ -16,7 +16,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Action method to display a list of administrators.
         /// </summary>
-        [Authorize]
+   
         public ActionResult ViewAdmin()
         {
             try
@@ -35,7 +35,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// GET action method for displaying the form to add an administrator.
         /// </summary>
-        [Authorize]
+      
         public ActionResult AddAdmin()
         {
             return View();
@@ -44,7 +44,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Action method for displaying the admin home page.
         /// </summary>
-         [Authorize]
+     
         public ActionResult AdminHomePage()
         {
             return View();
@@ -54,7 +54,7 @@ namespace BasketballAcademy.Controllers
         /// POST action method for adding an administrator to the database.
         /// </summary>
         /// <param name="admin">The administrator data to add.</param>
-        [Authorize]
+   
         [HttpPost]
         public ActionResult AddAdmin(Admin admin)
         {
@@ -76,7 +76,7 @@ namespace BasketballAcademy.Controllers
         /// GET action method for deleting an administrator.
         /// </summary>
         /// <param name="id">The ID of the administrator to delete.</param>
-        [Authorize]
+     
         public ActionResult Delete(int id)
         {
             try
@@ -98,7 +98,7 @@ namespace BasketballAcademy.Controllers
         /// <param name="id">The ID of the administrator to delete.</param>
         /// <param name="collection">Form collection data.</param>
         [HttpPost]
-        [Authorize]
+      
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
@@ -115,6 +115,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Display the contact form.
         /// </summary>
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             return View();
@@ -125,6 +126,7 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="contact">The contact information submitted by the user.</param>
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Contact(Contact contact)
         {
             try
@@ -144,7 +146,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Display a view for viewing messages.
         /// </summary>
-        [Authorize]
+  
         public ActionResult ViewMessage()
         {
             try
@@ -164,7 +166,7 @@ namespace BasketballAcademy.Controllers
         /// Action method for deleting a message.
         /// </summary>
         /// <param name="id">The ID of the message to delete.</param>
-        [Authorize]
+        
         public ActionResult DeleteMessage(int id)
         {
             try

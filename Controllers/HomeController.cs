@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace BasketballAcademy.Controllers
 {
-  
+
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         /// <summary>

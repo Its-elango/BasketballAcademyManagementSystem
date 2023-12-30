@@ -53,6 +53,7 @@ namespace BasketballAcademy.Repository
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
+                        
                         return rowsAffected >= 1;
                     }
                 }

@@ -8,13 +8,14 @@ using System.Web.Mvc;
 
 namespace BasketballAcademy.Controllers
 {
+    [Authorize]
     public class CoachController : Controller
     {
 
         /// <summary>
         /// Displays the coach's home page.
         /// </summary>
-        [Authorize]
+
         public ActionResult CoachHomePage()
         {
             return View();
@@ -23,7 +24,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays the page to add a new coach.
         /// </summary>
-        [Authorize]
+     
         public ActionResult AddCoach()
         {
             return View();
@@ -31,7 +32,7 @@ namespace BasketballAcademy.Controllers
 
         // HTTP POST action method for inserting a coach into the database
         [HttpPost]
-        [Authorize]
+
         /// <summary>
         /// Handles the form submission to register a new coach.
         /// </summary>
@@ -55,7 +56,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays a list of coaches.
         /// </summary>
-        [Authorize]
+
         public ActionResult ViewCoach()
         {
             try
@@ -76,7 +77,7 @@ namespace BasketballAcademy.Controllers
         /// <param name="id">The ID of the coach to update.</param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+     
         public ActionResult UpdateCoach( int id,string name,string email)
         {
             try
@@ -98,7 +99,7 @@ namespace BasketballAcademy.Controllers
 
 
         [HttpPost]
-        [Authorize]
+  
         /// <summary>
         /// Handles the form submission to update coach information.
         /// </summary>
@@ -123,14 +124,14 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays the page to register an event for a coach.
         /// </summary>
-        [Authorize]
+    
         public ActionResult RegisterEvent()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+
         /// <summary>
         /// Handles the form submission to register an event for a coach.
         /// </summary>
@@ -156,7 +157,7 @@ namespace BasketballAcademy.Controllers
         /// Deletes a coach with the specified ID.
         /// </summary>
         /// <param name="Id">The ID of the coach to delete.</param>
-        [Authorize]
+ 
         public ActionResult Delete(int Id)
         {
             try
@@ -174,7 +175,7 @@ namespace BasketballAcademy.Controllers
 
         // POST: Admin/Delete/5
         [HttpPost]
-        [Authorize]
+       
         /// <summary>
         /// Handles the form submission for deleting a coach.
         /// </summary>

@@ -12,6 +12,7 @@ using System.Xml.Linq;
 
 namespace BasketballAcademy.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
 
@@ -19,7 +20,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays a page to add a new event.
         /// </summary>
-        [Authorize]
+     
         public ActionResult AddEvents()
         {
             return View();
@@ -27,7 +28,7 @@ namespace BasketballAcademy.Controllers
 
         // POST: Admin/Create
         [HttpPost]
-        [Authorize]
+ 
         /// <summary>
         /// Handles the form submission to add a new event.
         /// </summary>
@@ -51,7 +52,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays a list of events.
         /// </summary>
-        [Authorize]
+  
         public ActionResult ViewEvents()
         {
             try
@@ -69,7 +70,7 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Action method for displaying the home page with events for authorized users.
         /// </summary>
-        [Authorize]
+   
         public ActionResult HomeEvent()
         {
             try
@@ -96,7 +97,7 @@ namespace BasketballAcademy.Controllers
         /// Action method for deleting an event with the specified ID.
         /// </summary>
         /// <param name="Id">The ID of the event to delete.</param>
-        [Authorize]
+   
         public ActionResult Delete(int Id)
         {
             try
@@ -118,7 +119,7 @@ namespace BasketballAcademy.Controllers
         /// <param name="Id">The ID of the event to delete.</param>
         /// <param name="collection">The form data collection.</param>
         [HttpPost]
-        [Authorize]
+
         public ActionResult Delete(int Id, FormCollection collection)
         {
             try
@@ -137,7 +138,7 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="id">The ID of the event to register for.</param>
         /// <param name="coachid">The coach's ID for registration.</param>
-        [Authorize]
+ 
         public ActionResult RegisterEvent(int id, int coachid)
         {
             try
@@ -166,7 +167,7 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="id">The ID of the event for which registration data is to be viewed.</param>
         [HttpGet]
-        [Authorize]
+  
         public ActionResult ViewRegistration(int id)
         {
             try
@@ -186,7 +187,7 @@ namespace BasketballAcademy.Controllers
         /// Action method for viewing events associated with a coach.
         /// </summary>
         /// <param name="id">The ID of the coach for whom events are to be viewed.</param>
-        [Authorize]
+      
         public ActionResult ViewMyEvent(int id)
         {
             try

@@ -372,7 +372,7 @@ namespace BasketballAcademy.Repository
                         List<Admission> playerlist = new List<Admission>();
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ChooseCoach", name);
-
+                        cmd.Parameters.AddWithValue("@status", 1);
                         SqlDataAdapter sd = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         sd.Fill(dt);
@@ -403,7 +403,6 @@ namespace BasketballAcademy.Repository
         }
 
 
-        int CoachID;
         public List<Events> GetEventsByPlayer(int Id)
         {
             List<Events> eventlist = new List<Events>(); 
@@ -414,66 +413,35 @@ namespace BasketballAcademy.Repository
                 {
                     connection.Open(); 
 
-                    using (SqlCommand cmd = new SqlCommand("sp_GetCoachIdByPlayerID", connection))
+                    using (SqlCommand cmd = new SqlCommand("sp_GetEventsPlayerId", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ID", Id);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
-                            {
-                                CoachID = Convert.ToInt32(reader["CoachID"]);
-                            }
-                        }
-                    }
-                    using (SqlCommand comd = new SqlCommand("sp_GetEventIdByCoachID", connection))
-                    {
-                        comd.CommandType = CommandType.Text;
-                        comd.Parameters.AddWithValue("@CoachID", CoachID);
-
-                        List<int> eventIds = new List<int>(); 
-
-                        using (SqlDataReader reader = comd.ExecuteReader())
-                        {
                             while (reader.Read())
                             {
-                                int eventId = Convert.ToInt32(reader["EventID"]);
-                                eventIds.Add(eventId);
-                            }
-                        }
-                        using (SqlCommand eventCmd = new SqlCommand("sp_GetEventByEventID", connection))
-                        {
-                            eventCmd.CommandType = CommandType.StoredProcedure;
-
-                            foreach (int eventId in eventIds)
-                            {
-                                eventCmd.Parameters.Clear(); 
-                                eventCmd.Parameters.AddWithValue("@EventID", eventId);
-
-                                using (SqlDataReader reader = eventCmd.ExecuteReader())
+                                eventlist.Add(new Events
                                 {
-                                    while (reader.Read())
-                                    {
-                                        eventlist.Add(new Events
-                                        {
-                                            EventID = Convert.ToInt32(reader["EventID"]),
-                                            EventName = Convert.ToString(reader["EventName"]),
-                                            EventDate = (DateTime)reader["EventDate"],
-                                            EventTime = (TimeSpan)reader["EventTime"],
-                                            Incharge = Convert.ToString(reader["Incharge"]),
-                                            Venue = Convert.ToString(reader["Venue"]),
-                                            Details = Convert.ToString(reader["Details"]),
-                                            AgeGroup = Convert.ToString(reader["AgeGroup"]),
-                                            EventImage = (byte[])reader["EventImage"],
-                                            PrizeDetails = Convert.ToString(reader["PrizeDetails"]),
-                                            Contact = Convert.ToString(reader["Contact"]),
-                                        });
-                                    }
-                                }
+                                    EventID = Convert.ToInt32(reader["EventID"]),
+                                    EventName = Convert.ToString(reader["EventName"]),
+                                    EventDate = (DateTime)reader["EventDate"],
+                                    EventTime = (TimeSpan)reader["EventTime"],
+                                    Incharge = Convert.ToString(reader["Incharge"]),
+                                    Venue = Convert.ToString(reader["Venue"]),
+                                    Details = Convert.ToString(reader["Details"]),
+                                    AgeGroup = Convert.ToString(reader["AgeGroup"]),
+                                    EventImage = (byte[])reader["EventImage"],
+                                    PrizeDetails = Convert.ToString(reader["PrizeDetails"]),
+                                    Contact = Convert.ToString(reader["Contact"]),
+                                });
                             }
                         }
-                    }
+
+
+                    }                                          
+                    
                 }
                 finally
                 {

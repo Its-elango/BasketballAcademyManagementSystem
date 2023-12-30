@@ -8,12 +8,13 @@ using System.Web.Mvc;
 
 namespace BasketballAcademy.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         /// <summary>
         /// Displays the user's home page.
         /// </summary>
-        [Authorize]
+      
         public ActionResult UserHomePage()
         {
             return View();
@@ -22,24 +23,26 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays the page to add a new user (player).
         /// </summary>
- 
+        [AllowAnonymous]
         public ActionResult AddUser()
         {
             return View();
         }
 
-        [HttpPost]
-        [Authorize]
+
         /// <summary>
         /// Handles the form submission to register a new user (player).
         /// </summary>
         /// <param name="player">The user (player) information to register.</param>
+        [HttpPost]
+        [AllowAnonymous]
         public ActionResult AddUser(User player)
         {
             try
             {
                 UserRepository repository = new UserRepository();
-                if (repository.RegisterUser(player)) 
+                bool result = repository.RegisterUser(player);
+                if (result) 
                 {
                     ViewBag.Success = "Signup successfull";
                 }
@@ -47,13 +50,13 @@ namespace BasketballAcademy.Controllers
                 {
                     ViewBag.Failure = "Email already taken!! Try with another one";
                 }
-            return View();
+                    return View();
                }
             catch (Exception exception)
-            {
-                ErrorLogger.LogError(exception);
-                return View();
-               }
+                 {
+                    ErrorLogger.LogError(exception);
+                    return View();
+                 }
         }
 
 
@@ -62,13 +65,13 @@ namespace BasketballAcademy.Controllers
         /// <summary>
         /// Displays a list of all users (players).
         /// </summary>
-        [Authorize]
+       
         public ActionResult ViewAll()
         {
             try
             {
                 UserRepository repository = new UserRepository();
-                List<User> Player = repository.ViewUser(); )
+                List<User> Player = repository.ViewUser(); 
                 return View(Player); 
             }
             catch (Exception exception)
@@ -82,7 +85,7 @@ namespace BasketballAcademy.Controllers
         /// Deletes a user (player) with the specified ID.
         /// </summary>
         /// <param name="ID">The ID of the user (player) to delete.</param>
-        [Authorize]
+      
         public ActionResult Delete(int ID)
         {
             try
@@ -100,7 +103,7 @@ namespace BasketballAcademy.Controllers
 
 
         [HttpPost]
-        [Authorize]
+        
         /// <summary>
         /// Handles the form submission for deleting a user (player).
         /// </summary>

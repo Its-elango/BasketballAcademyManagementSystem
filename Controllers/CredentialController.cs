@@ -12,12 +12,15 @@ using System.Web.UI.WebControls;
 
 namespace BasketballAcademy.Controllers
 {
+    [AllowAnonymous]
+
     public class CredentialController : Controller
     {
         // GET: Credential
         /// <summary>
         /// GET action method for displaying the sign-in form.
         /// </summary>
+        [RequireHttps]
         public ActionResult SignIn()
         {
             return View();
@@ -28,6 +31,7 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="credentials">The user's credentials (username and password).</param>
         [HttpPost]
+        [RequireHttps]
         public ActionResult SignIn(Credentials credentials)
         {
             try
@@ -71,6 +75,15 @@ namespace BasketballAcademy.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
+            
+            Session.Clear();    
+            Session.Abandon();
+            HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            authCookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(authCookie);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
             return RedirectToAction("SignIn", "Credential");
         }
 

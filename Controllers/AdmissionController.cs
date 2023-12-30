@@ -12,6 +12,7 @@ using System.Xml.Linq;
 
 namespace BasketballAcademy.Controllers
 {
+    [Authorize]
     public class AdmissionController : Controller
     {
 
@@ -19,7 +20,7 @@ namespace BasketballAcademy.Controllers
         /// Displays the enrollment form for players.
         /// </summary>
         /// <returns>The view for enrolling players.</returns>
-        [Authorize]
+       
         public ActionResult EnrollPlayer()
         {
             return View();
@@ -33,7 +34,6 @@ namespace BasketballAcademy.Controllers
         /// <param name="name">The name of the coach associated with the enrollment form.</param>
         /// <returns>The enrollment form view.</returns>
         [HttpGet]
-        [Authorize]
         public ActionResult EnrollPlayer(int coachid, string name,int id)
         {
             try
@@ -56,7 +56,6 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="admission">The Admission object containing player information.</param>
         /// <returns>The view indicating the enrollment status.</returns>
-        [Authorize]
         [HttpPost]
         public ActionResult EnrollPlayer(Admission admission)
         {
@@ -94,7 +93,6 @@ namespace BasketballAcademy.Controllers
         ///  <param name="name">The name of the player to be updated.</param>
         /// <returns>The player update form view.</returns>
         [HttpGet]
-        [Authorize]
         public ActionResult UpdatePlayer(int id,string email,string name)
         {
             try
@@ -119,7 +117,6 @@ namespace BasketballAcademy.Controllers
         /// <param name="admission">The Admission object containing updated player information.</param>
         /// <returns>The view indicating the update status.</returns>
         [HttpPost]
-        [Authorize]
         public ActionResult UpdatePlayer(Admission admission)
         {
             try
@@ -143,7 +140,6 @@ namespace BasketballAcademy.Controllers
         /// Retrieves a list of admissions from the AdmissionRepository and displays them in a view.
         /// </summary>
         /// <returns>An ActionResult representing the view with a list of admissions.</returns>
-        [Authorize]
         public ActionResult ViewPlayer()
         {
             try
@@ -164,7 +160,6 @@ namespace BasketballAcademy.Controllers
         /// Displays a list of enrolled players using data from the AdmissionRepository.
         /// </summary>
         /// <returns>An ActionResult representing the view with a list of enrolled players.</returns>
-        [Authorize]
         public ActionResult ViewEnrolledPlayer()
         {
             try
@@ -189,7 +184,6 @@ namespace BasketballAcademy.Controllers
         /// <param name="status">The new status to set for the item.</param>
         /// <returns>A JsonResult indicating the success or failure of the status update.</returns>
         [HttpPost]
-        [Authorize]
         public JsonResult UpdateStatus(int itemId, int status)
         {
             try
@@ -213,7 +207,6 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="Id">The ID of the player to delete.</param>
         /// <returns>ActionResult: Redirects to the "ViewEnrolledPlayer" action after successful deletion; returns a view in case of an exception.</returns>
-        [Authorize]
         public ActionResult Delete(int Id)
         {
             try
@@ -234,7 +227,6 @@ namespace BasketballAcademy.Controllers
         /// Retrieves a list of coaches from the AdmissionRepository and displays them in a view.
         /// </summary>
         /// <returns>An ActionResult representing the view with a list of coaches.</returns>
-        [Authorize]
         public ActionResult CoachList()
         {
             try
@@ -256,14 +248,23 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="name">The name to filter players by.</param>
         /// <returns>An ActionResult representing the view with a list of filtered players.</returns>
-        [Authorize]
         public ActionResult PlayerList(string name)
         {
             try
             {
                 AdmissionRepository repository = new AdmissionRepository();
                 List<Admission> players = repository.PlayerList(name);
-                return View(players);
+                if (players.Count == 0)
+                {
+                    ViewBag.Message = "No players found.";
+                }
+                else
+                {
+                    return View(players);
+                }
+
+               return View();
+               
             }
             catch (Exception exception)
             {
@@ -272,7 +273,7 @@ namespace BasketballAcademy.Controllers
             }
         }
 
-        [Authorize]
+
         /// <summary>
         /// Action method for viewing events associated with a player.
         /// </summary>
@@ -283,7 +284,16 @@ namespace BasketballAcademy.Controllers
             {
                 AdmissionRepository repository = new AdmissionRepository();
                 List<Events> events = repository.GetEventsByPlayer(id);
-                return View(events);
+                if (events.Count == 0)
+                {
+                    ViewBag.Message = "No events found.";
+                }
+                else
+                {
+                    return View(events);
+                }
+                return View();
+
             }
             catch (Exception exception)
             {

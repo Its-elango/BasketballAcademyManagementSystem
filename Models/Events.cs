@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BasketballAcademy.Models
 {
@@ -27,6 +28,8 @@ namespace BasketballAcademy.Models
         public string AgeGroup { get; set; }
 
         public string Incharge { get; set; }
+
+        public List<SelectListItem> coach { get; set; }
 
         [Display(Name = "Event poster")]
         public  byte[] EventImage  { get; set;}

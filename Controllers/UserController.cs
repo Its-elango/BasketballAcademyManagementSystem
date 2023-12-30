@@ -29,7 +29,6 @@ namespace BasketballAcademy.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         /// <summary>
         /// Handles the form submission to register a new user (player).
         /// </summary>
@@ -68,7 +67,7 @@ namespace BasketballAcademy.Controllers
             try
             {
                 UserRepository repository = new UserRepository();
-                List<User> Player = repository.ViewUser(); )
+                List<User> Player = repository.ViewUser(); 
                 return View(Player); 
             }
             catch (Exception exception)

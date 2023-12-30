@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 using System.Web.Services.Description;
 using System.Xml.Linq;
@@ -17,12 +18,17 @@ namespace BasketballAcademy.Controllers
 
 
         /// <summary>
-        /// Displays a page to add a new event.
+        /// Renders the view for adding a new event, providing a list of available coaches.
         /// </summary>
+        [HttpGet]
         [Authorize]
         public ActionResult AddEvents()
         {
-            return View();
+            Events events = new Events();
+            EventRepository repository = new EventRepository();
+            events.coach = repository.SelectCoach();
+            return View(events);
+           
         }
 
         // POST: Admin/Create
@@ -32,14 +38,15 @@ namespace BasketballAcademy.Controllers
         /// Handles the form submission to add a new event.
         /// </summary>
         /// <param name="events">The event data to be added.</param>
-        public ActionResult AddEvents(Events events )
+        public ActionResult AddEvents(Events events)
         {
             try
             {
                 EventRepository repository = new EventRepository();
-                repository.AddEvents(events); 
-                ViewBag.Message = "Event added successfully"; 
-                return View();
+                events.coach = repository.SelectCoach();
+                repository.AddEvents(events);
+                ViewBag.Message = "Event added successfully";
+                return View(events);
             }
             catch (Exception exception)
             {
@@ -57,8 +64,8 @@ namespace BasketballAcademy.Controllers
             try
             {
                 EventRepository repository = new EventRepository();
-                List<Events> events = repository.ViewEvents(); 
-                return View(events); 
+                List<Events> events = repository.ViewEvents();
+                return View(events);
             }
             catch (Exception exception)
             {

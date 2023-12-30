@@ -283,6 +283,10 @@ namespace BasketballAcademy.Controllers
             {
                 AdmissionRepository repository = new AdmissionRepository();
                 List<Events> events = repository.GetEventsByPlayer(id);
+                if (events.Count == 0)
+                {
+                    ViewBag.Message = "No events available";
+                }
                 return View(events);
             }
             catch (Exception exception)

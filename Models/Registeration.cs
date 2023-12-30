@@ -8,5 +8,6 @@ namespace BasketballAcademy.Models
     public class Registeration
     {
         public string Name { get; set; }
+        public int ID { get; set; }
     }
 }

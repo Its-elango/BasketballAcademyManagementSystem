@@ -1,18 +1,18 @@
 ﻿/* Styles for the 'head' element */
 #head {
-    color: purple; 
-
-/* Styles for the 'body' element */
+    color: purple;
+}
 body {
     background-image: url('../../content/image/coachbg.jpg');
-    background-repeat: no-repeat; 
-    background-size: cover; 
-    backdrop-filter: blur(10px); 
-    color: white; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    color: white;
 }
-
-/* Styles for an element with the ID 'EventForm' */
-#EventForm {
+    /* Styles for the 'body' element */
+    /* Styles for an element with the ID 'EventForm' */
+#EventForm
+    {
     justify-content: center; 
     align-items: center; 
     display: flex; 

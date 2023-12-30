@@ -70,6 +70,8 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         public ActionResult SignOut()
         {
+            Session.Clear();
+            Session.Abandon();
             FormsAuthentication.SignOut();
             return RedirectToAction("SignIn", "Credential");
         }

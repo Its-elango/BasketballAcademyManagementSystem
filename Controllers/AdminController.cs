@@ -23,6 +23,8 @@ namespace BasketballAcademy.Controllers
             {
                 AdminRepository repository = new AdminRepository();
                 List<Admin> admins = repository.ViewAdmin();
+                string successMessage = TempData["success"] as string;
+                ViewBag.SuccessMessage = successMessage;
                 return View(admins);
             }
             catch (Exception exception)
@@ -77,13 +79,20 @@ namespace BasketballAcademy.Controllers
         /// </summary>
         /// <param name="id">The ID of the administrator to delete.</param>
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id,int adminid)
         {
             try
             {
                 AdminRepository repository = new AdminRepository();
-                repository.DeleteAdmin(id);
-                return RedirectToAction("ViewAdmin"); 
+                if(repository.DeleteAdmin(id, adminid)==-1)
+                {
+                    TempData["success"] = "You can't delete your details";
+                    return RedirectToAction("ViewAdmin");
+                }
+                else
+                {
+                    return RedirectToAction("ViewAdmin");
+                }
             }
             catch (Exception exception)
             {

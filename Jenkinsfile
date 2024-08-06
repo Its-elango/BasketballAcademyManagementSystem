@@ -2,24 +2,33 @@ pipeline {
     agent any
   
     stages {
-      
-        stage('build') {
+        stage('Checkout') {
             steps {
-           echo 'Auto building the application...'
+                echo 'Checking out code from GitHub...'
+                checkout scm
+            }
+        }
+      
+        stage('Restore NuGet Packages') {
+            steps {
+                echo 'Restoring NuGet packages...'
+                bat "${NUGET} restore YourProject.sln"
             }
         }  
       
-        stage('test') {
+        stage('Build') {
             steps {
-            echo 'testing the application...'
+                echo 'Building the application...'
+                bat "${MSBUILD} BasketballAcademy.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
             }
-        }     
-      
-        stage('deploy') {
+        }  
+               
+        stage('Deploy') {
             steps {
-            echo 'deploying the application...'
+                echo 'Deploying the application...'
+                // Include deployment steps here, e.g., copying files to a deployment directory
+                // bat "xcopy /s /y /i YourProject\\bin\\Release C:\\Path\\To\\Deployment\\Directory"
             }
         }    
-      
-     }
-  }
+    }
+}
